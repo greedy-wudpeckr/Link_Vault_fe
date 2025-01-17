@@ -9,21 +9,34 @@ interface CardProps{
     type : "youtube" | "twitter";
     title : string;
     link : string;
+    keyy: string;
+    keyId: string;
     onDelete : (link : string) => void;
 }
 
+// async function fetchUserInfo() {
+//   try {
+//     const response = await axios.get(`${BACKEND_URL}/api/v1/user`, { withCredentials: true });
+//     return response.data; // This contains the user info
+//   } catch (error) {
+//     console.error('Error fetching user info:', error);
+//     return null;
+//   }
+// }
+
+
+
 export function Card(props: CardProps) {
     async function deleteCard(event: React.MouseEvent) {
-        event.preventDefault(); // Prevent any default behavior
-    
+        event.preventDefault(); 
+        console.log(props);
+
         try {
           // Send delete request to the server
           const response = await axios.delete(`${BACKEND_URL}/api/v1/content`, {
-            headers: {
-              Authorization: localStorage.getItem("token"),
-            },
             data: {
-              contentId: props.link, // Assuming `link` is used as the unique content ID
+              contentId: props.keyy, // Assuming `link` is used as the unique content ID
+              userId : props.keyId._id  
             },
           });
     

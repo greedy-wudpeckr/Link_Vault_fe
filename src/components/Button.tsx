@@ -15,7 +15,7 @@ const variantType = {
     secondary: "bg-purple-200 text-purple-400"
 }
 
-const defaultStyle = "px-4 m-2 py-2 rounded-md flex  items-center"
+const defaultStyle = "px-4 m-2 mt-0 py-2 rounded-md flex  items-center"
 
 export function Button(props : ButtonProps) {
     return (
