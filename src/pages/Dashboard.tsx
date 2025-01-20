@@ -19,6 +19,7 @@ export default function Dashboard() {
     async function fetchUserInfo() {
       try {
         const response = await axios.get(`${BACKEND_URL}/api/v1/user`, { withCredentials: true });
+        //@ts-ignore
         const userI = response.data; // This contains the user info
       } catch (error) {
         console.error('Error fetching user info:', error);
