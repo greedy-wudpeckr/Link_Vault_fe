@@ -14,7 +14,7 @@ export default function Navbar(){
     return (
         <div id="Navbar" className="w-screen -mt-3 bg-black pl-5 pr-5 z-10 flex justify-between">
             <div id="leftSide" className="">
-                <img className="h-10 m-3" src="src\assets\lll2.png" alt="logo" />
+                <img className="h-10 m-3" src="https://imgur.com/pybaxR6" alt="logo" />
             </div>
             <div id="rytSide" className="flex">
 
