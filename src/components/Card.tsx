@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import ShareIcon from "../icons/ShareIcon";
 import  Trash  from "../icons/Trash";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
@@ -36,6 +35,7 @@ export function Card(props: CardProps) {
           const response = await axios.delete(`${BACKEND_URL}/api/v1/content`, {
             data: {
               contentId: props.keyy, // Assuming `link` is used as the unique content ID
+              //@ts-ignore
               userId : props.keyId._id  
             },
           });
@@ -61,9 +61,6 @@ export function Card(props: CardProps) {
             <div>{props.title}</div>
           </div>
           <div id="1st ryt" className="flex">
-            <div className="pr-2">
-              <ShareIcon />
-            </div>
             <div
               onClick={deleteCard}
               className="pr-2 cursor-pointer"

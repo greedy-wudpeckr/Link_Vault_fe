@@ -4,7 +4,6 @@ import axios from "axios";
 import { Label } from "../components/Ui_Label";
 import { Input } from "../components/Ui_Input";
 import { cn } from "../lib/utils";
-import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 import { BackgroundBeams } from "../components/Beams";
@@ -34,7 +33,7 @@ export default function SignIn() {
         password,
       });
 
-      alert("Signup successful");
+      alert("Signin successful");
       navigate("/dashboard"); // Redirect to a welcome page or another route
     } catch (error: any) {
       console.error("Signin failed:", error);

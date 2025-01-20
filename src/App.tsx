@@ -3,7 +3,7 @@ import { Signup } from "./pages/Signup"
 import SignIn from "./pages/Signin"
 import Home from "./pages/HomePage"
 import Dashboard from "./pages/Dashboard"
-import { Navigate, useNavigate } from "react-router-dom"
+import { Navigate, } from "react-router-dom"
 
 import { BrowserRouter ,Routes ,Route } from "react-router-dom"
 

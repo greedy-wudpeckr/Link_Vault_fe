@@ -34,7 +34,7 @@ export default function Dashboard() {
           // Display a success message (e.g., using a modal or toast)
           console.log("Successfully Logged Out.");
           navigate("/signin");
-          alert("Logged Out , Sign in again")
+          alert("Logged Out , Signin again")
         }
       } catch (error) {
         console.error("Logout failed:", error);
@@ -53,6 +53,7 @@ export default function Dashboard() {
 
   function handleDelete(link: string) {
     setContents((prevContents) =>
+      //@ts-ignore
       prevContents.filter((content) => content.link !== link)
     );
   }
@@ -113,15 +114,17 @@ after:brightness-125
     <div className='flex items-start flex-wrap'>
     
     {contents.length === 0 ? (
-  <div className='h-screen w-screen flex items-center justify-center'>
+  <div className="text-4xl h-screen w-screen sm:text-7xl font-bold flex items-center justify-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-slate-600">
     No data to show 
     Start Creating One
     </div>
 ) : (
+  //@ts-ignore
   contents.map(({ title, link, type, _id, userId }) => (
     <Card1
       onDelete={handleDelete}
       type={type}
+      //@ts-ignore
       link={link}
       keyId={userId}
       keyy={_id}
