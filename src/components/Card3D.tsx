@@ -1,9 +1,8 @@
 import { ReactElement } from "react";
-import ShareIcon from "../icons/ShareIcon";
 import Trash from "../icons/Trash";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
-import { CardBody, CardContainer, CardItem } from "./3Dcard";
+import { CardContainer } from "./3Dcard";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 
 interface CardProps {
@@ -34,6 +33,7 @@ export function Card1(props: CardProps) {
       const response = await axios.delete(`${BACKEND_URL}/api/v1/content`, {
         data: {
           contentId: props.keyy, // Assuming `link` is used as the unique content ID
+          //@ts-ignore
           userId: props.keyId._id,
         },
       });
