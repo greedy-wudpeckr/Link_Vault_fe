@@ -76,7 +76,7 @@ after:brightness-125
 
 <div id="Navbar" className="w-screen bg-black pt-3 z-10 pl-5 pr-5 flex justify-between">
             <div id="leftSide" className="">
-                <img className="h-10 m-2 mt-0" src="https://imgur.com/pybaxR6" alt="logo" />
+            <img className="h-10 m-2" src="https://i.imgur.com/pybaxR6.png" alt="logo" />
             </div>
             <div id="rytSide" className="flex">
 
