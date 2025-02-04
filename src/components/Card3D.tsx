@@ -3,8 +3,7 @@ import Trash from "../icons/Trash";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 import { CardContainer } from "./3Dcard";
-// import { TwitterTweetEmbed } from "react-twitter-embed";
-import { XEmbed } from 'react-social-media-embed';
+import { XEmbed } from "react-social-media-embed";
 
 interface CardProps {
   appIcon: ReactElement;
@@ -16,15 +15,12 @@ interface CardProps {
   onDelete: (link: string) => void;
 }
 
-// Utility function to extract Tweet ID from a URL
-function extractTweetId(url: string): string | null {
-  const match = url.match(/\/status\/(\d+)/);
-  return match ? match[1] : null;
+// Utility function to validate Twitter links
+function isValidTwitterLink(url: string): boolean {
+  return /^https?:\/\/(www\.)?(twitter|x)\.com\/\w+\/status\/\d+/.test(url);
 }
 
 export function Card1(props: CardProps) {
-  const tweetId = extractTweetId(props.link);
-
   async function deleteCard(event: React.MouseEvent) {
     event.preventDefault();
     console.log(props);
@@ -33,7 +29,7 @@ export function Card1(props: CardProps) {
       // Send delete request to the server
       const response = await axios.delete(`${BACKEND_URL}/api/v1/content`, {
         data: {
-          contentId: props.keyy, // Assuming `link` is used as the unique content ID
+          contentId: props.keyy, // Assuming `keyy` is the unique content ID
           //@ts-ignore
           userId: props.keyId._id,
         },
@@ -60,16 +56,13 @@ export function Card1(props: CardProps) {
           <div className="text-white">{props.title}</div>
         </div>
         <div id="1st ryt" className="flex">
-          <div
-            onClick={deleteCard}
-            className="pr-2 cursor-pointer text-white"
-          >
+          <div onClick={deleteCard} className="pr-2 cursor-pointer text-white">
             <Trash />
           </div>
         </div>
       </div>
       <div id="2nd box">
-        <div className="pt-4 hover:z-50 ">
+        <div className="pt-4 hover:z-50">
           {props.type === "youtube" ? (
             <iframe
               className="w-full p-3"
@@ -80,10 +73,10 @@ export function Card1(props: CardProps) {
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe>
-          ) : tweetId ? (
-            <XEmbed url={tweetId} />
+          ) : isValidTwitterLink(props.link) ? (
+            <XEmbed url={props.link} width={500} height={600} />
           ) : (
-            <p className="text-white">Invalid Twitter link</p>
+            <p className="text-white">Invalid Twitter/X link</p>
           )}
         </div>
       </div>
