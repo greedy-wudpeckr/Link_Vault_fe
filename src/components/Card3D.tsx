@@ -1,9 +1,8 @@
-import { ReactElement } from "react";
+import { useState, useEffect, ReactElement } from "react";
 import Trash from "../icons/Trash";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 import { CardContainer } from "./3Dcard";
-import { XEmbed } from "react-social-media-embed";
 
 interface CardProps {
   appIcon: ReactElement;
@@ -21,6 +20,14 @@ function isValidTwitterLink(url: string): boolean {
 }
 
 export function Card1(props: CardProps) {
+  const [XEmbed, setXEmbed] = useState<any>(null);
+
+  useEffect(() => {
+    import("react-social-media-embed").then((mod) => {
+      setXEmbed(() => mod.XEmbed);
+    });
+  }, []);
+
   async function deleteCard(event: React.MouseEvent) {
     event.preventDefault();
     console.log(props);
@@ -29,15 +36,14 @@ export function Card1(props: CardProps) {
       // Send delete request to the server
       const response = await axios.delete(`${BACKEND_URL}/api/v1/content`, {
         data: {
-          contentId: props.keyy, // Assuming `keyy` is the unique content ID
+          contentId: props.keyy,
           //@ts-ignore
           userId: props.keyId._id,
         },
       });
 
-      // Check if the server confirms deletion
       if (response.status === 200) {
-        props.onDelete(props.link); // Notify the parent component to remove the card from UI
+        props.onDelete(props.link);
       } else {
         console.error("Failed to delete content:", response.data.error);
         alert("Failed to delete the content.");
@@ -73,7 +79,7 @@ export function Card1(props: CardProps) {
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             ></iframe>
-          ) : isValidTwitterLink(props.link) ? (
+          ) : isValidTwitterLink(props.link) && XEmbed ? (
             <XEmbed url={props.link} width={500} height={600} />
           ) : (
             <p className="text-white">Invalid Twitter/X link</p>
