@@ -3,7 +3,8 @@ import Trash from "../icons/Trash";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 import { CardContainer } from "./3Dcard";
-import { TwitterTweetEmbed } from "react-twitter-embed";
+// import { TwitterTweetEmbed } from "react-twitter-embed";
+import { XEmbed } from 'react-social-media-embed';
 
 interface CardProps {
   appIcon: ReactElement;
@@ -80,7 +81,7 @@ export function Card1(props: CardProps) {
               allowFullScreen
             ></iframe>
           ) : tweetId ? (
-            <TwitterTweetEmbed tweetId={tweetId} />
+            <XEmbed url={tweetId} />
           ) : (
             <p className="text-white">Invalid Twitter link</p>
           )}
